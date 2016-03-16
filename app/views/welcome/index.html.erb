@@ -1,0 +1,21 @@
+<h1>Welcome to Coder school snap chat</h1>
+<%= link_to "Sign Up", new_user_path %>
+
+<h2> Users </h2>
+
+<table class = "table">
+	<thead class ="thead thead-default">
+		<tr>
+			<th> Name: </th>
+			<th> Email: </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% User.all.each do |user| %>
+		<tr>
+			<td><%= user.name %> </td>
+			<td><%= user.email %> </td>
+		</tr>
+		<% end %>	
+	</tbody>
+</table>
