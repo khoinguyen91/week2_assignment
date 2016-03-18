@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
   		@current_user = User.find session[:user_id]
   	end
   end
+  def sign_in?
+    current_user
+  end
+  def require_login
+    redirect_to sign_in_path, flash: {error: 'Login first to see this page.'} unless sign_in?
+  end
+  def skipped_login
+    redirect_to messages_path(recipient_id: session[:user_id]) if sign_in?
+  end
 end

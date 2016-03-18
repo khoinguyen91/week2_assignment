@@ -1,0 +1,19 @@
+<%= form_for(Message.new)  do |f| %>
+    <div class="form-group">
+      <div class="form-group">
+        <label class="control-label">Send message to</label>
+          <%= f.select(:recipient_id, {}, {prompt: "Select your friend(s) to send message"}, {:multiple => true, :class => 'form-control'}) do%>
+            <% if @available_recipient.count > 0 %>
+              <% @available_recipient.each do |recipient| %>
+                <%= content_tag(:option, "#{recipient.name} (email: #{recipient.email})", value: recipient.id) %>
+              <% end %>
+            <% end%>
+          <% end %>
+      </div>
+    </div>
+    <%= f.text_area :content, class: 'form-control', placeholder: 'Your message here' %>
+    <%= f.hidden_field :sender_id, :value => session[:user_id]%>
+    <%= f.hidden_field :unread, :value => true%>
+    <%= f.submit 'Send Messages', class: 'btn btn-success' %>
+    <%= link_to 'Cancel', root_path , class: "btn btn-danger" %>
+<% end %>

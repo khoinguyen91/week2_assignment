@@ -1,0 +1,9 @@
+<h2> You have <%= pluralize(@new_message_count, "New message", "new messages")%> </h2>
+
+<div class="list-group">
+  <%= render @messages %>
+</div>
+<div class="action-bar">
+  <%= link_to 'New Message', new_message_path , class: "btn btn-secondary" %>
+
+</div>

@@ -17,9 +17,10 @@
 	<br></br>
 	<%= link_to "Log out", logout_path , method: 'delete'%>
 	<%= link_to "Friend List", user_path(:user_id) %>
+	<%= link_to "Messages", messages_path %>
 </div>
 <% else %>
-    <%= link_to "Login", new_session_path %>
+    <%= link_to "Login", new_session_path, class: 'btn btn-primary' %>
 <% end %>
 <% if flash.any? %>
 	<% flash.each do |key, value| %>
