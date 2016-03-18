@@ -1,0 +1,5 @@
+<h3> "User List" </h3>
+<% User.all.each do |user| %>
+<strong><%= user.name %></strong>
+<li><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></li>
+<% end %>

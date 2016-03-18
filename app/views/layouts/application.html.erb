@@ -16,6 +16,7 @@
 	<strong>Welcome to CoderChat</strong>, <%= current_user.name %>
 	<br></br>
 	<%= link_to "Log out", logout_path , method: 'delete'%>
+	<%= link_to "Friend List", user_path(:user_id) %>
 </div>
 <% else %>
     <%= link_to "Login", new_session_path %>
