@@ -14,18 +14,12 @@ class MessagesController < ApplicationController
 				message = Message.new(message_params)
 				message.recipient_id = recipient
 				unless message.save
-					redirect_to new_message_path, flash: {error: "Something goes wrong. Oops!"}
+					redirect_to new_message_path, flash: {error: "Oops! Something went wrong. "}
 				end
 			end
 			redirect_to root_path , flash: {success: "Your message has been sent."}
 
-      #
-      # message = Message.new(message_params)
-      # if @message.save
-      #   redirect_to root_path , flash: {success: "Your message has been sent."}
-      # else
-      #   redirect_to new_message_path, flash: {error: "Something goes wrong. Oops!"}
-      # end
+      
   end
 end
 
@@ -36,17 +30,17 @@ end
 
 def index
 	recipient_id = params[:recipient_id]
-	@messages = Message.where(recipient_id: recipient_id).order("created_at desc") || []
-	@new_message_count  = @messages.to_a.count {|message| message.unread = false}
+	 @messages = Message.where(recipient_id: current_user).order("created_at desc") || []
+	@new_message_count  = @messages.to_a.count {|message| message.unread = true}
 end
 
 def show
 	@message = Message.find params[:id]
 	if @message.recipient_id != session[:user_id]
-		redirect_to root_path, flash: {error: "Sorry! You can view your messages."}
+		redirect_to root_path, flash: {error: "Sorry! You only can view your messages."}
 	else
 		@message.unread = false
-		@message.read_at = DateTime.current
+		@message.readtime = DateTime.current
 		@message.save
 	end
 end

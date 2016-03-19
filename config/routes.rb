@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   root 'welcome#index'
   resources :messages
-  get 'a' => 'messages#show'
+  get 'sent_messages' => 'messages#get_sent_message'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

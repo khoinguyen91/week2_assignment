@@ -1,10 +1,10 @@
 <ul class="list-group">
   <% @sent_messages.each do |message| %>
-    <li class="list-group-item message-title <%=' list-group-item-warning' !unless message.unread%>">
-      <% if !message.unread %>
-        <span class="label label-default label-pill pull-right">was read <%= message.read_at.strftime("on %d/%m/%Y at %I:%M%p")%></span>
+    <li class="list-group-item message-title <%=' list-group-item-warning' if message.unread%>">
+      <% if message.unread %>
+       <span class="label label-default label-pill pull-right"> unread </span>
       <% else %>
-        <span class="label label-default label-pill pull-right"> unread </span>
+       <span class="label label-default label-pill pull-right">was read <%= message.readtime.try(:strftime, "on %d/%m/%Y at %I:%M%p")%></span>  
       <% end %>
       To: <%=message.recipient.name%>
     </li>

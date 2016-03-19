@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:index]
-  before_action :skipped_login, only: [:new]
+  # before_action :require_login, only: [:index]
+  # before_action :skipped_login, only: [:new]
   def new
   	@user = User.new
   end
