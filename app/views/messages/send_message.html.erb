@@ -4,7 +4,7 @@
       <% if message.unread %>
        <span class="label label-default label-pill pull-right"> unread </span>
       <% else %>
-       <span class="label label-default label-pill pull-right">was read <%= message.readtime.try(:strftime, "on %d/%m/%Y at %I:%M%p")%></span>  
+       <span class="label label-default label-pill pull-right">was read <%=  message.readtime.strftime("on %d/%m/%Y at %I:%M%p")%></span>  
       <% end %>
       To: <%=message.recipient.name%>
     </li>

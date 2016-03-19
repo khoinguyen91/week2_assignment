@@ -4,18 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   def current_user
-  	return @current_user if @current_user
-  	if session[:user_id] 
-  		@current_user = User.find session[:user_id]
-  	end
+  	return nil if !session[:user_id] || !User.where(id: session[:user_id]).presence
+
+    @current_user ||= User.find(session[:user_id])
   end
-  def sign_in?
+  def signed_in?
     current_user
   end
   def require_login
-    redirect_to sign_in_path, flash: {error: 'Login first to see this page.'} unless sign_in?
+    redirect_to sign_in_path, flash: {error: 'Login first to see this page.'} unless signed_in?
   end
   def skipped_login
-    redirect_to messages_path(recipient_id: session[:user_id]) if sign_in?
+    redirect_to messages_path(recipient_id: session[:user_id]) if signed_in?
   end
 end
