@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   resources :friendships
   resources :users
   resources :sessions, only: [:new, :create]
-  get 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy'
   root 'welcome#index'
   resources :messages
   get 'sent_messages' => 'messages#get_sent_message'
-  get 'message_show' => 'messages#message'
+  # get 'message_show' => 'messages#message'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
