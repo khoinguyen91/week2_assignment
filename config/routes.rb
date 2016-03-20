@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :friendships
   resources :users
   resources :sessions, only: [:new, :create]
-  delete 'logout' => 'sessions#destroy'
+  get 'logout' => 'sessions#destroy'
   root 'welcome#index'
   resources :messages
   get 'sent_messages' => 'messages#get_sent_message'
