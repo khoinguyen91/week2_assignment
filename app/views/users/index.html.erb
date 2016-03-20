@@ -1,5 +1,7 @@
 <h3> "User List" </h3>
 <% User.all.each do |user| %>
+<% if (user.email != current_user.email) %>
 <strong><%= user.name %></strong>
 <li><%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %></li>
+<% end %>
 <% end %>
