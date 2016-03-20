@@ -31,7 +31,7 @@ end
 def index
 	recipient_id = params[:recipient_id]
 	 @messages = Message.where(recipient_id: current_user).order("created_at desc") || []
-	@new_message_count  = @messages.to_a.count {|message| message.unread = true}
+	@new_message_count  = @messages.to_a.count {|message| message.unread }
 end
 
 def show
