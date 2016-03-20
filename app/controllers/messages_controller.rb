@@ -48,6 +48,6 @@ end
 private
 
 def message_params
-	params.require(:message).permit(:content, :sender_id, :unread)
+	params.require(:message).permit(:content, :sender_id, :unread, {avatars: []})
 end
 end

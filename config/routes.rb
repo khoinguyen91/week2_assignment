@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :messages
   get 'sent_messages' => 'messages#get_sent_message'
+  match 'auth/:provider/callback', to: 'sessions#login_fb', via: [:get, :post]
+  match 'auth/failure', to: redirect('/'), via: [:get, :post]
   # get 'message_show' => 'messages#message'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
